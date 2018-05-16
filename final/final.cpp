@@ -1,14 +1,16 @@
 #include <iostream>
-#include <fstream>
+#include "tinyxml2.h"
+
 using namespace std;
+using namespace tinyxml2;
 
-#include <final.xml>
-
-int main()
+int main( int argc, const char ** argv)
 {
-  ofstream final.xml;
-  final.xml.open ("example.txt");
-  final.xml << "Writing this to a file.\n";
-  final.xml.close();
+ XMLDocument* doc = new XMLDocument();
+doc->LoadFile( argv[1] );
+XMLElement* root = doc->FirstChildElement();
+cout << root->FirstChildElement()->Name() << "\n";
+cout << root->FirstChildElement()->GetText() << "\n";
+
   return 0;
 }
